@@ -40,7 +40,7 @@ public class BillResponseModel {
 
     private List<TransactionResponseModel> transactionResponseModels;
 
-    private Date created_at;
+    private Date createdAt;
 
-    private Date updated_at;
+    private Date updatedAt;
 }

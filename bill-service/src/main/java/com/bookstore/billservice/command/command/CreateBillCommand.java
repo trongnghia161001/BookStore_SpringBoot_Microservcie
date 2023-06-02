@@ -37,7 +37,7 @@ public class CreateBillCommand {
 
     private String type;
 
-    private Date created_at;
+    private Date createdAt;
 
-    private Date updated_at;
+    private Date updatedAt;
 }

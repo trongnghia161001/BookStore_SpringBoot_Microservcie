@@ -1,6 +1,5 @@
 package com.bookstore.billservice.command.saga;
 
-import com.bookstore.billservice.command.command.DeleteBillCommand;
 import com.bookstore.billservice.command.events.BillCreateEvent;
 import com.bookstore.billservice.command.events.BillDeleteEvent;
 import com.bookstore.commonservice.command.CreateTransactionByBillCommand;
@@ -72,7 +71,7 @@ public class BillSaga {
                                command.setName(address.getLastName() + " " + address.getFirstName());
                                command.setPhone(address.getPhoneNumber());
                                command.setAddress(address.getAddressLine1() + "," + province.getName());
-                               command.setCreated_at(new Date());
+                               command.setCreatedAt(new Date());
                                command.setStatus("Dang cho thanh toan");
                                commandGateway.sendAndWait(command);
                            }

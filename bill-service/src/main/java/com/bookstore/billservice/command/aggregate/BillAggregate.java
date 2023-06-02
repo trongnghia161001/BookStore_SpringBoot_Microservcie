@@ -27,7 +27,9 @@ public class BillAggregate {
 
     @AggregateIdentifier
     private String id;
+
     private Long userId;
+
     private Double productCost;
 
     private Double shippingCost;
@@ -48,9 +50,9 @@ public class BillAggregate {
 
     private String type;
 
-    private Date created_at;
+    private Date createdAt;
 
-    private Date updated_at;
+    private Date updatedAt;
 
     public BillAggregate() {
     }
@@ -76,8 +78,8 @@ public class BillAggregate {
         this.note = event.getNote();
         this.status = event.getStatus();
         this.type = event.getType();
-        this.created_at = event.getCreated_at();
-        this.updated_at = event.getUpdated_at();
+        this.createdAt = event.getCreatedAt();
+        this.updatedAt = event.getUpdatedAt();
     }
 
     @CommandHandler
@@ -101,8 +103,8 @@ public class BillAggregate {
         this.note = event.getNote();
         this.status = event.getStatus();
         this.type = event.getType();
-        this.created_at = event.getCreated_at();
-        this.updated_at = event.getUpdated_at();
+        this.createdAt = event.getCreatedAt();
+        this.updatedAt = event.getUpdatedAt();
     }
 
     @CommandHandler
@@ -138,8 +140,8 @@ public class BillAggregate {
         this.note = event.getNote();
         this.status = event.getStatus();
         this.type = event.getType();
-        this.created_at = event.getCreated_at();
-        this.updated_at = event.getUpdated_at();
+        this.createdAt = event.getCreatedAt();
+        this.updatedAt = event.getUpdatedAt();
     }
 
     @CommandHandler
@@ -163,8 +165,8 @@ public class BillAggregate {
         this.note = event.getNote();
         this.status = event.getStatus();
         this.type = event.getType();
-        this.created_at = event.getCreated_at();
-        this.updated_at = event.getUpdated_at();
+        this.createdAt = event.getCreatedAt();
+        this.updatedAt = event.getUpdatedAt();
     }
 
     @CommandHandler

@@ -31,15 +31,29 @@ public class BillProjection {
         List<BillResponseModel> list = new ArrayList<>();
         List<Bill> List = repository.findAll();
         List.forEach(book -> {
-            BillResponseModel billResponseModel = new BillResponseModel();
+            BillResponseModel model = new BillResponseModel();
             GetDetailsUserQuery getDetailsEmployeeQuery = new GetDetailsUserQuery(book.getUserId());
+            GetAllTransactionByBillQuery getAllTransactionByBillQuery = new GetAllTransactionByBillQuery(
+                    book.getId(), book.getUserId()
+            );
+            List<TransactionByBillResponseCommonModel> transaction =
+                    queryGateway.query(getAllTransactionByBillQuery, ResponseTypes.multipleInstancesOf(
+                            TransactionByBillResponseCommonModel.class
+                    )).join();
             UserResponseCommonModel userResponseCommonModel =
                     queryGateway.query(getDetailsEmployeeQuery,
                                     ResponseTypes.instanceOf(UserResponseCommonModel.class))
                             .join();
-            BeanUtils.copyProperties(book, billResponseModel);
-            billResponseModel.setUsername(userResponseCommonModel.getUsername());
-            list.add(billResponseModel);
+            BeanUtils.copyProperties(book, model);
+            List<TransactionResponseModel> transactionResponseModels = new ArrayList<>();
+            for (TransactionByBillResponseCommonModel response : transaction) {
+                TransactionResponseModel transactionResponseModel = new TransactionResponseModel();
+                BeanUtils.copyProperties(response, transactionResponseModel);
+                transactionResponseModels.add(transactionResponseModel);
+            }
+            model.setUsername(userResponseCommonModel.getUsername());
+            model.setTransactionResponseModels(transactionResponseModels);
+            list.add(model);
         });
         return list;
     }
